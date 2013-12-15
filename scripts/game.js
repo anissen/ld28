@@ -281,11 +281,15 @@ function update() {
   var value = Math.sin(game.time.now / 1000) * Math.cos(game.time.now / 500);
   sky.alpha = value;
   sky2.alpha = (1.0 - value) / 2;
-  sky.tileScale.x = 2 + Math.sin(game.time.now) / 100;
-  sky.tileScale.y = 2 + Math.cos(game.time.now) / 100;
-  
+  sky.tileScale.x = 1 + Math.sin(game.time.now) / 100;
+  sky.tileScale.y = 1 + Math.cos(game.time.now) / 100;
   sky.tilePosition.x += 1.0 - Math.random() * 2;
-  sky.tilePosition.y += 1.0 - Math.random() * 2;
+
+  sky2.tilePosition.y += 1.0 - Math.random() * 2;
+  sky2.tileScale.x = 1 + Math.sin(game.time.now) / 100;
+  sky2.tileScale.y = 1 + Math.cos(game.time.now) / 100;
+  sky2.tilePosition.x += 1.0 - Math.random() * 2;
+  sky2.tilePosition.y += 1.0 - Math.random() * 2;
 
   filter.update();
 }
@@ -364,7 +368,6 @@ function spawnWave() {
       enemy.body.velocity.x = 70 + (Math.random()+0.2) * 15 * wave;
       if (Math.random() < 0.5) enemy.body.velocity.x *= -1;
       enemy.body.bounce.x = 1.0;
-      enemy.body.bounce.y = 0.2;
       enemy.body.collideWorldBounds = true;
       enemy.scale.setTo((boss ? 4 : 2), (boss ? 4 : 2));
       enemy.animations.add('walk', [0, 1, 2, 3], 10 + wave, true);
